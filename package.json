@@ -1,0 +1,46 @@
+{
+  "name": "webpack5-module-federation-demo",
+  "version": "1.0.0",
+  "description": "Complete Webpack 5 Module Federation setup with React 18, TypeScript, and Tailwind CSS",
+  "main": "index.js",
+  "scripts": {
+    "install:all": "npm run install:container && npm run install:remote1 && npm run install:remote2",
+    "install:container": "cd container && npm install",
+    "install:remote1": "cd remote1 && npm install",
+    "install:remote2": "cd remote2 && npm install",
+    "dev:all": "concurrently \"npm run dev:container\" \"npm run dev:remote1\" \"npm run dev:remote2\"",
+    "dev:container": "cd container && npm run dev",
+    "dev:remote1": "cd remote1 && npm run dev",
+    "dev:remote2": "cd remote2 && npm run dev",
+    "build:all": "npm run build:container && npm run build:remote1 && npm run build:remote2",
+    "build:container": "cd container && npm run build",
+    "build:remote1": "cd remote1 && npm run build",
+    "build:remote2": "cd remote2 && npm run build",
+    "storybook": "cd remote2 && npm run storybook",
+    "type-check:all": "npm run type-check:container && npm run type-check:remote1 && npm run type-check:remote2",
+    "type-check:container": "cd container && npm run type-check",
+    "type-check:remote1": "cd remote1 && npm run type-check",
+    "type-check:remote2": "cd remote2 && npm run type-check",
+    "start:all": "./start-all.sh",
+    "clean": "rm -rf container/dist remote1/dist remote2/dist remote2/storybook-static",
+    "clean:all": "npm run clean && rm -rf container/node_modules remote1/node_modules remote2/node_modules"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  },
+  "keywords": [
+    "module-federation",
+    "webpack5",
+    "react18",
+    "typescript",
+    "tailwindcss",
+    "storybook",
+    "micro-frontends"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  }
+}

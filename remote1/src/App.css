@@ -1,0 +1,51 @@
+/* Additional App-specific styles */
+.gradient-bg {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-0.25rem);
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+}
+
+.status-indicator {
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  margin-right: 0.75rem;
+}
+
+.status-indicator.online {
+  background-color: #48bb78;
+  box-shadow: 0 0 0.5rem rgba(72, 187, 120, 0.5);
+}
+
+.status-indicator.offline {
+  background-color: #e53e3e;
+  box-shadow: 0 0 0.5rem rgba(229, 62, 62, 0.5);
+}
+
+/* Responsive adjustments */
+@media (max-width: 48rem) {
+  .max-w-4xl {
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+
+  .grid-cols-1.md\:grid-cols-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .text-4xl {
+    font-size: 2rem;
+  }
+
+  .text-2xl {
+    font-size: 1.5rem;
+  }
+}
