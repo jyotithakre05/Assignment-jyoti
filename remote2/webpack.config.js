@@ -3,11 +3,15 @@ const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPl
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 
+const isProd = process.env.NODE_ENV === 'production';
+
 module.exports = {
   mode: 'development',
   entry: './src/index.ts',
   output: {
     publicPath: 'http://localhost:3002/',
+    filename: isProd ? '[name].[contenthash].js' : '[name].js',
+    chunkFilename: isProd ? '[id].[contenthash].js' : '[id].js',
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],

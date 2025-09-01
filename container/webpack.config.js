@@ -3,12 +3,18 @@ const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPl
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 
+const isProd = process.env.NODE_ENV === 'production';
+const REMOTE1_URL = process.env.REMOTE1_URL || 'http://localhost:3001';
+const REMOTE2_URL = process.env.REMOTE2_URL || 'http://localhost:3002';
+
 module.exports = {
   mode: 'development',
   context: __dirname,
   entry: './src/index.ts',
   output: {
     publicPath: 'http://localhost:3000/',
+    filename: isProd ? '[name].[contenthash].js' : '[name].js',
+    chunkFilename: isProd ? '[id].[contenthash].js' : '[id].js',
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
@@ -34,8 +40,8 @@ module.exports = {
     new ModuleFederationPlugin({
       name: 'container',
       remotes: {
-        remote1: 'remote1@http://localhost:3001/remoteEntry.js',
-        remote2: 'remote2@http://localhost:3002/remoteEntry.js',
+        remote1: `remote1@${REMOTE1_URL}/remoteEntry.js`,
+        remote2: `remote2@${REMOTE2_URL}/remoteEntry.js`,
       },
       shared: {
         react: { singleton: true, requiredVersion: '^18.2.0' },

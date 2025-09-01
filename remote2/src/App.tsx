@@ -47,7 +47,7 @@ const App: React.FC = () => {
               The same component can be consumed by the container application.
             </p>
             <div className="bg-gray-100 rounded p-4 text-sm text-gray-600">
-              <code>import('remote2/RemoteComponent')</code>
+              <code>import(&#39;remote2/RemoteComponent&#39;)</code>
             </div>
           </div>
         </div>
