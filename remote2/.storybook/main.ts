@@ -27,7 +27,7 @@ const config: StorybookConfig = {
     ...options,
     presets: [
       ['@babel/preset-env', { targets: { node: 'current' } }],
-      '@babel/preset-react',
+      ['@babel/preset-react', { runtime: 'automatic', importSource: 'react' }],
       '@babel/preset-typescript'
     ]
   }),
@@ -35,6 +35,11 @@ const config: StorybookConfig = {
     // Ensure proper handling of TypeScript and TSX files
     config.resolve = config.resolve || {};
     config.resolve.extensions = ['.ts', '.tsx', '.js', '.jsx', '.json'];
+
+    // Auto-import React wherever JSX is used (prevents React reference errors)
+    const { ProvidePlugin } = require('webpack');
+    config.plugins = config.plugins || [];
+    config.plugins.push(new ProvidePlugin({ React: 'react' }));
 
     return config;
   },
