@@ -23,10 +23,21 @@
     "type-check:remote2": "cd remote2 && npm run type-check",
     "start:all": "./start-all.sh",
     "clean": "rm -rf container/dist remote1/dist remote2/dist remote2/storybook-static",
-    "clean:all": "npm run clean && rm -rf container/node_modules remote1/node_modules remote2/node_modules"
+    "clean:all": "npm run clean && rm -rf container/node_modules remote1/node_modules remote2/node_modules",
+    "lint": "eslint . --ext .ts,.tsx,.js,.jsx --max-warnings=0",
+    "format": "prettier --write ."
   },
   "devDependencies": {
-    "concurrently": "^8.2.0"
+    "concurrently": "^8.2.0",
+    "typescript": "^5.4.5",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-react": "^7.34.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "@typescript-eslint/eslint-plugin": "^7.8.0",
+    "@typescript-eslint/parser": "^7.8.0",
+    "prettier": "^3.2.5"
   },
   "keywords": [
     "module-federation",
@@ -37,7 +48,7 @@
     "storybook",
     "micro-frontends"
   ],
-  "author": "Your Name",
+  "author": "Jyoti",
   "license": "MIT",
   "engines": {
     "node": ">=18.0.0",

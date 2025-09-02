@@ -1,13 +1,17 @@
 import React, { Suspense, lazy } from 'react';
 import { Link, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import { ErrorBoundary } from './components/ErrorBoundary';
 import { Button } from './components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './components/ui/card';
+import { ErrorBoundary } from './components/ErrorBoundary';
 
 // Lazy load federated components with proper typing
-const Remote1Component = lazy(() => import('remote1/RemoteComponent'));
+const Remote1Component = lazy(() =>
+  import('remote1/RemoteComponent').then(module => ({ default: module.default }))
+) as React.LazyExoticComponent<React.ComponentType<any>>;
 
-const Remote2Component = lazy(() => import('remote2/RemoteComponent'));
+const Remote2Component = lazy(() =>
+  import('remote2/RemoteComponent').then(module => ({ default: module.default }))
+) as React.LazyExoticComponent<React.ComponentType<any>>;
 
 const App: React.FC = () => {
   return (
@@ -60,7 +64,9 @@ const App: React.FC = () => {
             <Route path="/remote1" element={
               <ErrorBoundary fallback={
                 <Card>
-                  <CardContent className="pt-6 text-destructive">Failed to load Remote 1.</CardContent>
+                  <CardContent className="pt-6">
+                    <p className="text-destructive">Failed to load Remote 1 component.</p>
+                  </CardContent>
                 </Card>
               }>
                 <Suspense fallback={
@@ -81,7 +87,9 @@ const App: React.FC = () => {
             <Route path="/remote2" element={
               <ErrorBoundary fallback={
                 <Card>
-                  <CardContent className="pt-6 text-destructive">Failed to load Remote 2.</CardContent>
+                  <CardContent className="pt-6">
+                    <p className="text-destructive">Failed to load Remote 2 component.</p>
+                  </CardContent>
                 </Card>
               }>
                 <Suspense fallback={

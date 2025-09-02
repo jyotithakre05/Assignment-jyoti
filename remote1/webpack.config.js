@@ -12,6 +12,7 @@ module.exports = {
     publicPath: 'http://localhost:3001/',
     filename: isProd ? '[name].[contenthash].js' : '[name].js',
     chunkFilename: isProd ? '[id].[contenthash].js' : '[id].js',
+    crossOriginLoading: 'anonymous',
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],

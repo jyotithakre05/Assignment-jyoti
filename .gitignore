@@ -71,7 +71,6 @@ jspm_packages/
 # Storybook build outputs
 storybook-static/
 */storybook-static/
-remote2/storybook-static/
 
 # Temporary folders
 tmp/
